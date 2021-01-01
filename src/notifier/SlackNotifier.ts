@@ -19,9 +19,9 @@ class SlackNotifier {
   /**
    * 通知処理
    */
-  notify({ title, text }: { text: string; title: string }) {
+  notify({ title, text }: { text: string; title: string }): void {
     // メッセージを分割する
-    const chunkedMessageList = SlackNotifier.chunk(text);
+    const chunkedMessageList = this.chunk(text);
     chunkedMessageList.unshift(title);
     // メッセージを送信する
 
@@ -41,14 +41,14 @@ class SlackNotifier {
   /**
    * メッセージを投稿上限行数で分割する
    */
-  private static chunk(message: string): string[] {
+  private chunk(message: string): string[] {
     // 1投稿あたり40行まで
-    const limit: number = 40;
+    const limit = 40;
     // 改行コードで分割(+改行コードの統一)
     const messageList: string[] = message.replace(/\r?\n/g, '\n').split('\n');
 
     const chunkedMessageList = [];
-    let index: number = 0;
+    let index = 0;
 
     // 上限行数毎に配列にセットする
     while (index < messageList.length) {
@@ -61,4 +61,3 @@ class SlackNotifier {
 }
 
 export { SlackNotifier };
-export default SlackNotifier;

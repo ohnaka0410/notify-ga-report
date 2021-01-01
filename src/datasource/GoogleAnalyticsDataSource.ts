@@ -21,7 +21,7 @@ class GoogleAnalyticsDataSource {
    */
   get reportList(): { title: string; text: string }[] {
     // const startrow = 1;
-    const startrow: number = 2;
+    const startrow = 2;
     // const startcol = 1;
     const lastrow: number = this.sheet.getLastRow();
     const lastcol: number = this.sheet.getLastColumn();
@@ -32,8 +32,8 @@ class GoogleAnalyticsDataSource {
       .map((item) => item.join(''))
       .filter((item) => item.length);
     const reportList: { title: string; text: string[] }[] = [];
-    let index: number = 0;
-    const separator: string = '---';
+    let index = 0;
+    const separator = '---';
     data.forEach((row) => {
       if (row === separator) {
         index += 1;
@@ -60,4 +60,3 @@ class GoogleAnalyticsDataSource {
 }
 
 export { GoogleAnalyticsDataSource };
-export default GoogleAnalyticsDataSource;
